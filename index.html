@@ -6,81 +6,226 @@
 <meta name="theme-color" content="#07020f">
 <title>Meus Mixes</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&family=Outfit:wght@300;500&display=swap');
-:root{--roxo:#a855f7;--roxo-claro:#d8b4fe;--rosa:#f0abfc;--fundo:#07020f;--card:rgba(35,12,60,.55)}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&family=Outfit:wght@300;400;500&display=swap');
+:root{--roxo:#a855f7;--roxo-claro:#d8b4fe;--rosa:#f0abfc;--azul:#818cf8;--fundo:#07020f}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Outfit',system-ui,sans-serif;color:#f5f0ff;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:32px 18px;
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',system-ui,sans-serif;color:#f5f0ff;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:36px 18px 60px;
   background:
-    radial-gradient(circle at 20% 15%,rgba(168,85,247,.35),transparent 40%),
-    radial-gradient(circle at 80% 70%,rgba(236,72,153,.22),transparent 45%),
-    radial-gradient(circle at 50% 110%,rgba(99,102,241,.25),transparent 50%),
-    linear-gradient(180deg,#07020f 0%,#12052a 100%);
-  background-attachment:fixed;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:radial-gradient(1px 1px at 10% 20%,#fff,transparent),radial-gradient(1px 1px at 30% 80%,#e9d5ff,transparent),radial-gradient(1.5px 1.5px at 60% 40%,#fff,transparent),radial-gradient(1px 1px at 85% 15%,#f5d0fe,transparent),radial-gradient(1px 1px at 70% 90%,#fff,transparent),radial-gradient(1.5px 1.5px at 45% 60%,#ddd6fe,transparent),radial-gradient(1px 1px at 92% 55%,#fff,transparent),radial-gradient(1px 1px at 5% 60%,#fae8ff,transparent);
-  opacity:.7}
-body>*{position:relative;z-index:1}
-h1{font-family:'Orbitron',sans-serif;font-weight:800;font-size:2.2rem;letter-spacing:.12em;text-align:center;text-transform:uppercase;
-  background:linear-gradient(90deg,var(--roxo-claro),var(--rosa),var(--roxo));-webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 0 18px rgba(168,85,247,.55))}
-.sub{color:#c4b5fd;opacity:.8;margin:10px 0 36px;text-align:center;font-weight:300;letter-spacing:.04em}
-.btn{display:inline-block;text-decoration:none;color:#fff;font-weight:500;padding:13px 26px;border-radius:999px;font-size:.95rem;
+    radial-gradient(circle at 15% 10%,rgba(168,85,247,.38),transparent 42%),
+    radial-gradient(circle at 85% 65%,rgba(236,72,153,.25),transparent 45%),
+    radial-gradient(circle at 50% 115%,rgba(99,102,241,.3),transparent 50%),
+    linear-gradient(180deg,#07020f 0%,#130632 60%,#0a0318 100%);
+  background-attachment:fixed;overflow-x:hidden;position:relative}
+
+/* campo de estrelas */
+.space{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.star{position:absolute;background:#fff;border-radius:50%;box-shadow:0 0 6px rgba(216,180,254,.9);animation:twinkle ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:1;transform:scale(1.25)}}
+
+/* orbs flutuando */
+.orb{position:fixed;border-radius:50%;filter:blur(60px);opacity:.5;z-index:0;pointer-events:none;animation:drift 18s ease-in-out infinite alternate}
+.orb.a{width:340px;height:340px;background:#7c3aed;top:-80px;left:-100px}
+.orb.b{width:300px;height:300px;background:#db2777;bottom:-90px;right:-80px;animation-duration:22s}
+.orb.c{width:220px;height:220px;background:#4f46e5;top:45%;left:60%;animation-duration:26s;opacity:.35}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(50px,40px) scale(1.12)}}
+
+body>*:not(.space):not(.orb){position:relative;z-index:1}
+
+/* planeta no topo */
+.planet{width:86px;height:86px;border-radius:50%;margin-bottom:18px;position:relative;
+  background:radial-gradient(circle at 32% 30%,#f5d0fe 0%,#c084fc 25%,#7e22ce 60%,#3b0764 100%);
+  box-shadow:0 0 40px rgba(168,85,247,.7),inset -12px -10px 24px rgba(0,0,0,.45);
+  animation:float 6s ease-in-out infinite}
+.planet::after{content:"";position:absolute;left:-26px;right:-26px;top:50%;height:16px;margin-top:-8px;border-radius:50%;
+  border:2px solid rgba(240,171,252,.55);transform:rotate(-18deg);box-shadow:0 0 12px rgba(240,171,252,.4)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+h1{font-family:'Orbitron',sans-serif;font-weight:800;font-size:clamp(1.8rem,5vw,2.8rem);letter-spacing:.14em;text-align:center;text-transform:uppercase;
+  background:linear-gradient(90deg,var(--roxo-claro),var(--rosa),#c4b5fd,var(--roxo-claro));background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite;
+  filter:drop-shadow(0 0 20px rgba(168,85,247,.6))}
+@keyframes shine{to{background-position:200% center}}
+.sub{color:#d8b4fe;opacity:.85;margin:12px 0 40px;text-align:center;font-weight:300;letter-spacing:.06em;font-size:1rem}
+
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:#fff;font-weight:500;padding:13px 26px;border-radius:999px;font-size:.95rem;
   background:linear-gradient(135deg,#7c3aed,#c026d3);box-shadow:0 0 22px rgba(168,85,247,.55),inset 0 0 12px rgba(255,255,255,.15);
-  transition:transform .2s,box-shadow .2s}
-.btn:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 0 34px rgba(192,38,211,.8)}
-.back{color:#c4b5fd;text-decoration:none;align-self:flex-start;font-size:.95rem;opacity:.85}
-.back:hover{color:#fff;opacity:1}
-.center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;text-align:center;width:100%}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:20px;width:100%;max-width:980px}
-.card{background:var(--card);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(192,132,252,.25);border-radius:22px;
-  padding:28px 22px;display:flex;flex-direction:column;gap:18px;align-items:center;text-align:center;
-  box-shadow:0 8px 32px rgba(0,0,0,.35),inset 0 0 24px rgba(168,85,247,.08);transition:transform .25s,border-color .25s,box-shadow .25s}
-.card:hover{transform:translateY(-4px);border-color:rgba(232,121,249,.6);box-shadow:0 12px 40px rgba(168,85,247,.35)}
-.card a.title{font-family:'Orbitron',sans-serif;color:#f5f0ff;text-decoration:none;font-size:1.05rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+  transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}
+.btn::before{content:"";position:absolute;top:0;left:-75%;width:50%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);transition:left .6s}
+.btn:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 0 36px rgba(192,38,211,.85)}
+.btn:hover::before{left:125%}
+.btn .ico{font-size:1.05rem}
+
+.back{color:#d8b4fe;text-decoration:none;font-size:.95rem;opacity:.85;transition:opacity .2s;margin-bottom:auto;align-self:flex-start}
+.back:hover{opacity:1;color:#fff}
+
+.center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;text-align:center;width:100%}
+.big-icon{font-size:3.4rem;filter:drop-shadow(0 0 18px rgba(232,121,249,.6));animation:float 5s ease-in-out infinite}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:22px;width:100%;max-width:1000px}
+.card{position:relative;background:linear-gradient(160deg,rgba(60,20,100,.55),rgba(20,6,40,.6));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(192,132,252,.22);border-radius:24px;padding:30px 22px 26px;display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center;
+  box-shadow:0 10px 36px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06);transition:transform .3s,border-color .3s,box-shadow .3s;overflow:hidden;
+  animation:rise .7s ease both}
+.card:nth-child(1){animation-delay:.05s}.card:nth-child(2){animation-delay:.12s}.card:nth-child(3){animation-delay:.19s}
+.card:nth-child(4){animation-delay:.26s}.card:nth-child(5){animation-delay:.33s}.card:nth-child(6){animation-delay:.4s}
+.card:nth-child(7){animation-delay:.47s}.card:nth-child(8){animation-delay:.54s}.card:nth-child(9){animation-delay:.61s}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.card::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(232,121,249,.18),transparent 60%);opacity:0;transition:opacity .4s;pointer-events:none}
+.card:hover{transform:translateY(-6px);border-color:rgba(232,121,249,.65);box-shadow:0 16px 44px rgba(168,85,247,.4)}
+.card:hover::before{opacity:1}
+.card .emoji{font-size:2.2rem;filter:drop-shadow(0 0 10px rgba(192,132,252,.6));transition:transform .3s}
+.card:hover .emoji{transform:scale(1.15) rotate(-6deg)}
+.card a.title{font-family:'Orbitron',sans-serif;color:#f5f0ff;text-decoration:none;font-size:.98rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase}
 .card a.title:hover{color:var(--rosa)}
-.card .btn{padding:10px 20px;font-size:.85rem}
+.card .btn{padding:10px 18px;font-size:.82rem}
+
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
+<div class="orb a"></div><div class="orb b"></div><div class="orb c"></div>
+<div class="space">
+<i class="star" style="left:32.4vw;top:15.1vh;width:1px;height:1px;animation-duration:2.3s;animation-delay:2.7s"></i>
+<i class="star" style="left:36.6vw;top:5.8vh;width:1px;height:1px;animation-duration:2.1s;animation-delay:2.2s"></i>
+<i class="star" style="left:7.0vw;top:9.1vh;width:2px;height:2px;animation-duration:2.2s;animation-delay:2.8s"></i>
+<i class="star" style="left:94.7vw;top:63.1vh;width:1px;height:1px;animation-duration:4.3s;animation-delay:2.0s"></i>
+<i class="star" style="left:97.6vw;top:4.7vh;width:1px;height:1px;animation-duration:3.2s;animation-delay:0.7s"></i>
+<i class="star" style="left:11.8vw;top:30.8vh;width:1px;height:1px;animation-duration:2.4s;animation-delay:2.9s"></i>
+<i class="star" style="left:18.8vw;top:9.7vh;width:1px;height:1px;animation-duration:4.3s;animation-delay:3.1s"></i>
+<i class="star" style="left:49.6vw;top:53.2vh;width:1.5px;height:1.5px;animation-duration:3.9s;animation-delay:4.6s"></i>
+<i class="star" style="left:36.2vw;top:24.8vh;width:1px;height:1px;animation-duration:4.8s;animation-delay:1.2s"></i>
+<i class="star" style="left:57.4vw;top:52.5vh;width:1.5px;height:1.5px;animation-duration:4.9s;animation-delay:1.4s"></i>
+<i class="star" style="left:98.0vw;top:11.8vh;width:2px;height:2px;animation-duration:2.7s;animation-delay:1.7s"></i>
+<i class="star" style="left:93.3vw;top:42.2vh;width:1px;height:1px;animation-duration:5.1s;animation-delay:2.9s"></i>
+<i class="star" style="left:87.5vw;top:31.4vh;width:1.5px;height:1.5px;animation-duration:4.4s;animation-delay:2.9s"></i>
+<i class="star" style="left:45.6vw;top:84.0vh;width:1.5px;height:1.5px;animation-duration:3.9s;animation-delay:3.3s"></i>
+<i class="star" style="left:6.1vw;top:70.1vh;width:2px;height:2px;animation-duration:3.1s;animation-delay:1.9s"></i>
+<i class="star" style="left:66.9vw;top:2.3vh;width:2px;height:2px;animation-duration:3.4s;animation-delay:3.1s"></i>
+<i class="star" style="left:49.4vw;top:21.8vh;width:1.5px;height:1.5px;animation-duration:2.5s;animation-delay:1.2s"></i>
+<i class="star" style="left:39.1vw;top:87.1vh;width:1px;height:1px;animation-duration:2.7s;animation-delay:2.0s"></i>
+<i class="star" style="left:27.8vw;top:13.7vh;width:2px;height:2px;animation-duration:5.5s;animation-delay:1.4s"></i>
+<i class="star" style="left:41.5vw;top:35.9vh;width:2px;height:2px;animation-duration:5.8s;animation-delay:0.8s"></i>
+<i class="star" style="left:17.6vw;top:23.2vh;width:1px;height:1px;animation-duration:2.0s;animation-delay:4.2s"></i>
+<i class="star" style="left:18.2vw;top:28.2vh;width:1px;height:1px;animation-duration:3.7s;animation-delay:1.8s"></i>
+<i class="star" style="left:56.6vw;top:95.3vh;width:1px;height:1px;animation-duration:3.8s;animation-delay:4.4s"></i>
+<i class="star" style="left:95.2vw;top:68.1vh;width:2px;height:2px;animation-duration:3.6s;animation-delay:2.0s"></i>
+<i class="star" style="left:48.2vw;top:40.0vh;width:1px;height:1px;animation-duration:2.3s;animation-delay:1.0s"></i>
+<i class="star" style="left:16.2vw;top:34.0vh;width:1px;height:1px;animation-duration:2.4s;animation-delay:2.8s"></i>
+<i class="star" style="left:53.7vw;top:94.9vh;width:1px;height:1px;animation-duration:2.3s;animation-delay:1.0s"></i>
+<i class="star" style="left:37.6vw;top:63.4vh;width:1.5px;height:1.5px;animation-duration:4.4s;animation-delay:2.4s"></i>
+<i class="star" style="left:11.5vw;top:48.8vh;width:2px;height:2px;animation-duration:3.9s;animation-delay:1.6s"></i>
+<i class="star" style="left:14.4vw;top:75.0vh;width:1.5px;height:1.5px;animation-duration:3.9s;animation-delay:3.5s"></i>
+<i class="star" style="left:51.6vw;top:20.5vh;width:1.5px;height:1.5px;animation-duration:2.6s;animation-delay:2.7s"></i>
+<i class="star" style="left:2.7vw;top:52.8vh;width:1px;height:1px;animation-duration:4.8s;animation-delay:1.3s"></i>
+<i class="star" style="left:36.7vw;top:16.7vh;width:1px;height:1px;animation-duration:4.1s;animation-delay:3.9s"></i>
+<i class="star" style="left:33.0vw;top:22.3vh;width:1px;height:1px;animation-duration:5.2s;animation-delay:4.1s"></i>
+<i class="star" style="left:74.0vw;top:22.7vh;width:2px;height:2px;animation-duration:3.4s;animation-delay:0.1s"></i>
+<i class="star" style="left:2.8vw;top:27.9vh;width:1.5px;height:1.5px;animation-duration:2.8s;animation-delay:3.0s"></i>
+<i class="star" style="left:34.4vw;top:80.9vh;width:1.5px;height:1.5px;animation-duration:5.8s;animation-delay:1.8s"></i>
+<i class="star" style="left:22.0vw;top:22.7vh;width:1px;height:1px;animation-duration:3.4s;animation-delay:2.4s"></i>
+<i class="star" style="left:98.5vw;top:61.0vh;width:1px;height:1px;animation-duration:3.9s;animation-delay:3.3s"></i>
+<i class="star" style="left:80.0vw;top:8.5vh;width:1px;height:1px;animation-duration:5.6s;animation-delay:3.9s"></i>
+<i class="star" style="left:75.0vw;top:47.8vh;width:1px;height:1px;animation-duration:3.7s;animation-delay:3.2s"></i>
+<i class="star" style="left:8.7vw;top:94.6vh;width:2px;height:2px;animation-duration:3.9s;animation-delay:3.7s"></i>
+<i class="star" style="left:8.5vw;top:15.9vh;width:1px;height:1px;animation-duration:2.1s;animation-delay:3.0s"></i>
+<i class="star" style="left:46.5vw;top:65.6vh;width:2px;height:2px;animation-duration:4.6s;animation-delay:1.8s"></i>
+<i class="star" style="left:54.9vw;top:13.1vh;width:1px;height:1px;animation-duration:5.2s;animation-delay:3.6s"></i>
+<i class="star" style="left:10.3vw;top:74.9vh;width:1px;height:1px;animation-duration:3.7s;animation-delay:4.4s"></i>
+<i class="star" style="left:82.6vw;top:21.1vh;width:1.5px;height:1.5px;animation-duration:2.9s;animation-delay:2.5s"></i>
+<i class="star" style="left:76.4vw;top:32.6vh;width:2px;height:2px;animation-duration:5.3s;animation-delay:0.3s"></i>
+<i class="star" style="left:74.0vw;top:89.8vh;width:2px;height:2px;animation-duration:5.3s;animation-delay:4.4s"></i>
+<i class="star" style="left:13.1vw;top:15.2vh;width:1px;height:1px;animation-duration:5.5s;animation-delay:3.9s"></i>
+<i class="star" style="left:60.9vw;top:77.6vh;width:1px;height:1px;animation-duration:2.7s;animation-delay:2.4s"></i>
+<i class="star" style="left:72.5vw;top:55.6vh;width:1.5px;height:1.5px;animation-duration:4.7s;animation-delay:2.7s"></i>
+<i class="star" style="left:48.2vw;top:77.6vh;width:1px;height:1px;animation-duration:3.0s;animation-delay:1.4s"></i>
+<i class="star" style="left:77.2vw;top:50.8vh;width:1px;height:1px;animation-duration:5.0s;animation-delay:4.6s"></i>
+<i class="star" style="left:44.3vw;top:61.3vh;width:1px;height:1px;animation-duration:4.8s;animation-delay:2.3s"></i>
+<i class="star" style="left:53.3vw;top:47.8vh;width:1px;height:1px;animation-duration:4.8s;animation-delay:4.4s"></i>
+<i class="star" style="left:94.2vw;top:26.0vh;width:1px;height:1px;animation-duration:5.4s;animation-delay:0.7s"></i>
+<i class="star" style="left:12.2vw;top:44.2vh;width:1px;height:1px;animation-duration:4.7s;animation-delay:2.1s"></i>
+<i class="star" style="left:21.3vw;top:30.3vh;width:1px;height:1px;animation-duration:5.6s;animation-delay:0.8s"></i>
+<i class="star" style="left:71.6vw;top:66.0vh;width:1px;height:1px;animation-duration:3.0s;animation-delay:0.7s"></i>
+<i class="star" style="left:46.8vw;top:74.7vh;width:1px;height:1px;animation-duration:3.6s;animation-delay:2.4s"></i>
+<i class="star" style="left:99.0vw;top:83.2vh;width:1px;height:1px;animation-duration:4.8s;animation-delay:5.0s"></i>
+<i class="star" style="left:40.4vw;top:42.1vh;width:1.5px;height:1.5px;animation-duration:3.3s;animation-delay:3.6s"></i>
+<i class="star" style="left:1.9vw;top:55.4vh;width:2px;height:2px;animation-duration:4.8s;animation-delay:1.9s"></i>
+<i class="star" style="left:51.7vw;top:29.5vh;width:1px;height:1px;animation-duration:2.5s;animation-delay:4.6s"></i>
+<i class="star" style="left:22.9vw;top:87.6vh;width:1px;height:1px;animation-duration:3.1s;animation-delay:0.2s"></i>
+<i class="star" style="left:77.9vw;top:27.0vh;width:1px;height:1px;animation-duration:5.3s;animation-delay:4.2s"></i>
+<i class="star" style="left:67.6vw;top:94.6vh;width:2px;height:2px;animation-duration:2.6s;animation-delay:4.6s"></i>
+<i class="star" style="left:57.1vw;top:70.0vh;width:1px;height:1px;animation-duration:3.1s;animation-delay:4.0s"></i>
+<i class="star" style="left:18.3vw;top:89.5vh;width:1.5px;height:1.5px;animation-duration:5.8s;animation-delay:3.2s"></i>
+<i class="star" style="left:80.2vw;top:8.4vh;width:1px;height:1px;animation-duration:2.3s;animation-delay:4.3s"></i>
+<i class="star" style="left:45.4vw;top:33.9vh;width:2px;height:2px;animation-duration:5.7s;animation-delay:1.3s"></i>
+<i class="star" style="left:12.9vw;top:52.7vh;width:1px;height:1px;animation-duration:5.8s;animation-delay:4.8s"></i>
+<i class="star" style="left:26.2vw;top:18.1vh;width:1.5px;height:1.5px;animation-duration:4.5s;animation-delay:2.7s"></i>
+<i class="star" style="left:20.6vw;top:44.6vh;width:1px;height:1px;animation-duration:3.1s;animation-delay:4.0s"></i>
+<i class="star" style="left:99.4vw;top:3.7vh;width:1px;height:1px;animation-duration:4.9s;animation-delay:2.8s"></i>
+<i class="star" style="left:18.9vw;top:47.5vh;width:2px;height:2px;animation-duration:2.4s;animation-delay:4.1s"></i>
+<i class="star" style="left:43.2vw;top:49.5vh;width:2px;height:2px;animation-duration:5.9s;animation-delay:1.5s"></i>
+<i class="star" style="left:21.5vw;top:23.0vh;width:1px;height:1px;animation-duration:5.3s;animation-delay:3.5s"></i>
+<i class="star" style="left:63.6vw;top:40.5vh;width:1.5px;height:1.5px;animation-duration:5.9s;animation-delay:4.2s"></i>
+<i class="star" style="left:1.4vw;top:62.5vh;width:1.5px;height:1.5px;animation-duration:3.7s;animation-delay:0.3s"></i>
+<i class="star" style="left:66.5vw;top:38.1vh;width:1.5px;height:1.5px;animation-duration:4.4s;animation-delay:3.5s"></i>
+<i class="star" style="left:4.5vw;top:18.5vh;width:1.5px;height:1.5px;animation-duration:3.8s;animation-delay:1.3s"></i>
+<i class="star" style="left:96.2vw;top:97.3vh;width:1.5px;height:1.5px;animation-duration:3.0s;animation-delay:4.8s"></i>
+<i class="star" style="left:31.0vw;top:35.7vh;width:1px;height:1px;animation-duration:3.3s;animation-delay:0.4s"></i>
+<i class="star" style="left:27.9vw;top:65.6vh;width:1px;height:1px;animation-duration:4.0s;animation-delay:0.0s"></i>
+<i class="star" style="left:26.4vw;top:9.0vh;width:2px;height:2px;animation-duration:4.3s;animation-delay:2.0s"></i>
+<i class="star" style="left:30.0vw;top:63.0vh;width:1px;height:1px;animation-duration:4.3s;animation-delay:2.6s"></i>
+<i class="star" style="left:75.1vw;top:65.8vh;width:2px;height:2px;animation-duration:5.1s;animation-delay:3.6s"></i>
+<i class="star" style="left:49.4vw;top:28.4vh;width:1px;height:1px;animation-duration:2.2s;animation-delay:4.2s"></i>
+</div>
 
+<div class="planet"></div>
 <h1>Meus Mixes</h1>
-<p class="sub">escolha um universo e viaje no Spotify</p>
+<p class="sub">escolha um universo e viaje pelo Spotify</p>
 <div class="grid">
   <div class="card">
+    <span class="emoji">🔥</span>
     <a class="title" href="./trap/">Mix Trap</a>
-    <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1EQmmtmV04TRee" target="_blank" rel="noopener">Ouvir no Spotify</a>
+    <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1EQmmtmV04TRee" target="_blank" rel="noopener"><span class="ico">▶</span> Ouvir</a>
   </div>
   <div class="card">
+    <span class="emoji">🎸</span>
     <a class="title" href="./mpb/">Mix MPB</a>
-    <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1EQrjpWhpIezMF" target="_blank" rel="noopener">Ouvir no Spotify</a>
+    <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1EQrjpWhpIezMF" target="_blank" rel="noopener"><span class="ico">▶</span> Ouvir</a>
   </div>
   <div class="card">
+    <span class="emoji">🎤</span>
     <a class="title" href="./hip-hop/">Mix Hip Hop</a>
-    <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1EQnqst5TRi17F" target="_blank" rel="noopener">Ouvir no Spotify</a>
+    <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1EQnqst5TRi17F" target="_blank" rel="noopener"><span class="ico">▶</span> Ouvir</a>
   </div>
   <div class="card">
+    <span class="emoji">🤠</span>
     <a class="title" href="./sertanejo/">Mix Sertanejo</a>
-    <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1EQmI5l5ME2ybc" target="_blank" rel="noopener">Ouvir no Spotify</a>
+    <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1EQmI5l5ME2ybc" target="_blank" rel="noopener"><span class="ico">▶</span> Ouvir</a>
   </div>
   <div class="card">
+    <span class="emoji">💃</span>
     <a class="title" href="./arrocha/">Mix Arrocha</a>
-    <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1EQuUVqXJiDNjA" target="_blank" rel="noopener">Ouvir no Spotify</a>
+    <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1EQuUVqXJiDNjA" target="_blank" rel="noopener"><span class="ico">▶</span> Ouvir</a>
   </div>
   <div class="card">
+    <span class="emoji">🇧🇷</span>
     <a class="title" href="./funk-brasileiro/">Mix Funk Brasileiro</a>
-    <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1EQoXa13YOCJfF" target="_blank" rel="noopener">Ouvir no Spotify</a>
+    <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1EQoXa13YOCJfF" target="_blank" rel="noopener"><span class="ico">▶</span> Ouvir</a>
   </div>
   <div class="card">
+    <span class="emoji">🌟</span>
     <a class="title" href="./pop/">Mix Pop</a>
-    <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1EQncLwOalG3K7" target="_blank" rel="noopener">Ouvir no Spotify</a>
+    <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1EQncLwOalG3K7" target="_blank" rel="noopener"><span class="ico">▶</span> Ouvir</a>
   </div>
   <div class="card">
+    <span class="emoji">🎧</span>
     <a class="title" href="./funk/">Mix Funk</a>
-    <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1EQnJyHBkXpASl" target="_blank" rel="noopener">Ouvir no Spotify</a>
+    <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1EQnJyHBkXpASl" target="_blank" rel="noopener"><span class="ico">▶</span> Ouvir</a>
   </div>
   <div class="card">
+    <span class="emoji">🥁</span>
     <a class="title" href="./samba/">Mix Samba</a>
-    <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1EQpDawryAAHhO" target="_blank" rel="noopener">Ouvir no Spotify</a>
+    <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1EQpDawryAAHhO" target="_blank" rel="noopener"><span class="ico">▶</span> Ouvir</a>
   </div>
 </div>
 </body>
