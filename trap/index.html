@@ -7,81 +7,69 @@
 <title>Mix Trap</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&family=Outfit:wght@300;400;500&display=swap');
-:root{--roxo:#a855f7;--roxo-claro:#d8b4fe;--rosa:#f0abfc;--azul:#818cf8;--fundo:#07020f}
+:root{--roxo:#a855f7;--roxo-claro:#d8b4fe;--rosa:#f0abfc}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Outfit',system-ui,sans-serif;color:#f5f0ff;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:36px 18px 60px;
-  background:
-    radial-gradient(circle at 15% 10%,rgba(168,85,247,.38),transparent 42%),
-    radial-gradient(circle at 85% 65%,rgba(236,72,153,.25),transparent 45%),
-    radial-gradient(circle at 50% 115%,rgba(99,102,241,.3),transparent 50%),
-    linear-gradient(180deg,#07020f 0%,#130632 60%,#0a0318 100%);
+  background:radial-gradient(circle at 15% 10%,rgba(168,85,247,.38),transparent 42%),radial-gradient(circle at 85% 65%,rgba(236,72,153,.25),transparent 45%),radial-gradient(circle at 50% 115%,rgba(99,102,241,.3),transparent 50%),linear-gradient(180deg,#07020f 0%,#130632 60%,#0a0318 100%);
   background-attachment:fixed;overflow-x:hidden;position:relative}
-
-/* campo de estrelas */
 .space{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .star{position:absolute;background:#fff;border-radius:50%;box-shadow:0 0 6px rgba(216,180,254,.9);animation:twinkle ease-in-out infinite}
 @keyframes twinkle{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:1;transform:scale(1.25)}}
-
-/* orbs flutuando */
 .orb{position:fixed;border-radius:50%;filter:blur(60px);opacity:.5;z-index:0;pointer-events:none;animation:drift 18s ease-in-out infinite alternate}
 .orb.a{width:340px;height:340px;background:#7c3aed;top:-80px;left:-100px}
 .orb.b{width:300px;height:300px;background:#db2777;bottom:-90px;right:-80px;animation-duration:22s}
 .orb.c{width:220px;height:220px;background:#4f46e5;top:45%;left:60%;animation-duration:26s;opacity:.35}
 @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(50px,40px) scale(1.12)}}
-
 body>*:not(.space):not(.orb){position:relative;z-index:1}
-
-/* planeta no topo */
-.planet{width:86px;height:86px;border-radius:50%;margin-bottom:18px;position:relative;
-  background:radial-gradient(circle at 32% 30%,#f5d0fe 0%,#c084fc 25%,#7e22ce 60%,#3b0764 100%);
-  box-shadow:0 0 40px rgba(168,85,247,.7),inset -12px -10px 24px rgba(0,0,0,.45);
-  animation:float 6s ease-in-out infinite}
-.planet::after{content:"";position:absolute;left:-26px;right:-26px;top:50%;height:16px;margin-top:-8px;border-radius:50%;
-  border:2px solid rgba(240,171,252,.55);transform:rotate(-18deg);box-shadow:0 0 12px rgba(240,171,252,.4)}
+.planet{width:86px;height:86px;border-radius:50%;margin-bottom:18px;position:relative;background:radial-gradient(circle at 32% 30%,#f5d0fe 0%,#c084fc 25%,#7e22ce 60%,#3b0764 100%);box-shadow:0 0 40px rgba(168,85,247,.7),inset -12px -10px 24px rgba(0,0,0,.45);animation:float 6s ease-in-out infinite}
+.planet::after{content:"";position:absolute;left:-26px;right:-26px;top:50%;height:16px;margin-top:-8px;border-radius:50%;border:2px solid rgba(240,171,252,.55);transform:rotate(-18deg)}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-
-h1{font-family:'Orbitron',sans-serif;font-weight:800;font-size:clamp(1.8rem,5vw,2.8rem);letter-spacing:.14em;text-align:center;text-transform:uppercase;
-  background:linear-gradient(90deg,var(--roxo-claro),var(--rosa),#c4b5fd,var(--roxo-claro));background-size:200% auto;
-  -webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite;
-  filter:drop-shadow(0 0 20px rgba(168,85,247,.6))}
+h1{font-family:'Orbitron',sans-serif;font-weight:800;font-size:clamp(1.8rem,5vw,2.8rem);letter-spacing:.14em;text-align:center;text-transform:uppercase;background:linear-gradient(90deg,var(--roxo-claro),var(--rosa),#c4b5fd,var(--roxo-claro));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite;filter:drop-shadow(0 0 20px rgba(168,85,247,.6))}
 @keyframes shine{to{background-position:200% center}}
-.sub{color:#d8b4fe;opacity:.85;margin:12px 0 40px;text-align:center;font-weight:300;letter-spacing:.06em;font-size:1rem}
-
-.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:#fff;font-weight:500;padding:13px 26px;border-radius:999px;font-size:.95rem;
-  background:linear-gradient(135deg,#7c3aed,#c026d3);box-shadow:0 0 22px rgba(168,85,247,.55),inset 0 0 12px rgba(255,255,255,.15);
-  transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}
+.sub{color:#d8b4fe;opacity:.85;margin:12px 0 28px;text-align:center;font-weight:300;letter-spacing:.06em}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:#fff;font-weight:500;padding:13px 26px;border-radius:999px;font-size:.95rem;border:none;cursor:pointer;font-family:inherit;background:linear-gradient(135deg,#7c3aed,#c026d3);box-shadow:0 0 22px rgba(168,85,247,.55),inset 0 0 12px rgba(255,255,255,.15);transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}
 .btn::before{content:"";position:absolute;top:0;left:-75%;width:50%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);transition:left .6s}
 .btn:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 0 36px rgba(192,38,211,.85)}
 .btn:hover::before{left:125%}
-.btn .ico{font-size:1.05rem}
-
-.back{color:#d8b4fe;text-decoration:none;font-size:.95rem;opacity:.85;transition:opacity .2s;margin-bottom:auto;align-self:flex-start}
+.btn.ghost{background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(216,180,254,.35);font-size:.85rem;padding:10px 18px}
+.btn.ghost.on{background:rgba(236,72,153,.25);box-shadow:inset 0 0 0 1px rgba(240,171,252,.7)}
+.toolbar{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center;width:100%;max-width:1000px;margin-bottom:28px}
+.search{flex:1;min-width:220px;max-width:420px;padding:13px 20px;border-radius:999px;border:1px solid rgba(192,132,252,.35);background:rgba(20,6,40,.6);color:#fff;font-family:inherit;font-size:.95rem;outline:none;transition:border-color .2s,box-shadow .2s}
+.search::placeholder{color:#a78bfa}
+.search:focus{border-color:#e879f9;box-shadow:0 0 18px rgba(232,121,249,.35)}
+.back{color:#d8b4fe;text-decoration:none;font-size:.95rem;opacity:.85;transition:opacity .2s;align-self:flex-start}
 .back:hover{opacity:1;color:#fff}
-
-.center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;text-align:center;width:100%}
+.center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;width:100%;max-width:520px}
 .big-icon{font-size:3.4rem;filter:drop-shadow(0 0 18px rgba(232,121,249,.6));animation:float 5s ease-in-out infinite}
-
+.actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.qr-box{margin-top:10px;padding:14px;border-radius:20px;background:rgba(245,240,255,.95);box-shadow:0 0 30px rgba(168,85,247,.45)}
+.qr-box canvas,.qr-box img{display:block}
+.qr-label{font-size:.8rem;color:#c4b5fd;opacity:.8}
+.nav-mixes{display:flex;justify-content:space-between;width:100%;max-width:520px;margin-top:auto;padding-top:30px;gap:12px}
+.nav-mixes a{color:#d8b4fe;text-decoration:none;font-size:.9rem;padding:10px 14px;border-radius:14px;background:rgba(40,12,70,.55);border:1px solid rgba(192,132,252,.2);transition:all .2s}
+.nav-mixes a:hover{color:#fff;border-color:#e879f9}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:22px;width:100%;max-width:1000px}
-.card{position:relative;background:linear-gradient(160deg,rgba(60,20,100,.55),rgba(20,6,40,.6));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  border:1px solid rgba(192,132,252,.22);border-radius:24px;padding:30px 22px 26px;display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center;
-  box-shadow:0 10px 36px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06);transition:transform .3s,border-color .3s,box-shadow .3s;overflow:hidden;
-  animation:rise .7s ease both}
-.card:nth-child(1){animation-delay:.05s}.card:nth-child(2){animation-delay:.12s}.card:nth-child(3){animation-delay:.19s}
-.card:nth-child(4){animation-delay:.26s}.card:nth-child(5){animation-delay:.33s}.card:nth-child(6){animation-delay:.4s}
-.card:nth-child(7){animation-delay:.47s}.card:nth-child(8){animation-delay:.54s}.card:nth-child(9){animation-delay:.61s}
+.card{position:relative;background:linear-gradient(160deg,rgba(60,20,100,.55),rgba(20,6,40,.6));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(192,132,252,.22);border-radius:24px;padding:30px 22px 24px;display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center;box-shadow:0 10px 36px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06);transition:transform .3s,border-color .3s,box-shadow .3s,opacity .3s;overflow:hidden;animation:rise .7s ease both}
+.card.hidden{display:none}
 @keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-.card::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(232,121,249,.18),transparent 60%);opacity:0;transition:opacity .4s;pointer-events:none}
 .card:hover{transform:translateY(-6px);border-color:rgba(232,121,249,.65);box-shadow:0 16px 44px rgba(168,85,247,.4)}
-.card:hover::before{opacity:1}
+.card .heart{position:absolute;top:12px;right:12px;background:none;border:none;font-size:1.3rem;cursor:pointer;opacity:.45;transition:transform .2s,opacity .2s}
+.card .heart:hover{transform:scale(1.2);opacity:1}
+.card .heart.on{opacity:1;filter:drop-shadow(0 0 8px rgba(244,114,182,.9))}
 .card .emoji{font-size:2.2rem;filter:drop-shadow(0 0 10px rgba(192,132,252,.6));transition:transform .3s}
 .card:hover .emoji{transform:scale(1.15) rotate(-6deg)}
 .card a.title{font-family:'Orbitron',sans-serif;color:#f5f0ff;text-decoration:none;font-size:.98rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase}
 .card a.title:hover{color:var(--rosa)}
-.card .btn{padding:10px 18px;font-size:.82rem}
-
+.card .row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.card .btn{padding:9px 16px;font-size:.8rem}
+.empty{display:none;color:#c4b5fd;opacity:.8;margin-top:20px}
+.toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,120px);background:rgba(40,12,70,.95);border:1px solid rgba(232,121,249,.5);color:#fff;padding:12px 22px;border-radius:999px;font-size:.9rem;transition:transform .35s;z-index:10;box-shadow:0 0 24px rgba(168,85,247,.5)}
+.toast.show{transform:translate(-50%,0)}
+footer{display:none}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 <div class="orb a"></div><div class="orb b"></div><div class="orb c"></div>
@@ -181,8 +169,59 @@ h1{font-family:'Orbitron',sans-serif;font-weight:800;font-size:clamp(1.8rem,5vw,
 <div class="center">
   <div class="big-icon">🔥</div>
   <h1>Mix Trap</h1>
-  <p class="sub">clique pra ouvir a playlist no Spotify</p>
-  <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1EQmmtmV04TRee" target="_blank" rel="noopener"><span class="ico">▶</span> Abrir no Spotify</a>
+  <p class="sub">ouça a playlist no Spotify</p>
+  <div class="actions">
+    <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1EQmmtmV04TRee" target="_blank" rel="noopener">▶ Abrir no Spotify</a>
+    <button class="btn ghost" id="share">↗ Compartilhar</button>
+    <button class="btn ghost" id="fav">♡ Favoritar</button>
+  </div>
+  <div class="qr-box" id="qr"></div>
+  <p class="qr-label">aponta a câmera pra abrir em outro celular</p>
 </div>
+<nav class="nav-mixes">
+  <a href="../samba/">← Samba</a>
+  <a href="../mpb/">MPB →</a>
+</nav>
+<div class="toast" id="toast"></div>
+<script>
+
+const FAV_KEY = 'mix_favoritos';
+function getFavs(){ try { return JSON.parse(localStorage.getItem(FAV_KEY)) || []; } catch(e){ return []; } }
+function setFavs(list){ try { localStorage.setItem(FAV_KEY, JSON.stringify(list)); } catch(e){} }
+function toast(msg){
+  const t = document.getElementById('toast'); if(!t) return;
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(window.__tt); window.__tt = setTimeout(()=>t.classList.remove('show'), 2200);
+}
+async function compartilhar(url, titulo){
+  if (navigator.share) {
+    try { await navigator.share({ title: titulo, url: url }); return; } catch(e){ /* cancelado */ }
+  }
+  try { await navigator.clipboard.writeText(url); toast('Link copiado ✨'); }
+  catch(e){ toast(url); }
+}
+
+
+const SLUG = 'trap';
+const shareBtn = document.getElementById('share');
+const favBtn = document.getElementById('fav');
+shareBtn.addEventListener('click', () => compartilhar(location.href, 'Mix Trap'));
+function syncFav(){
+  const on = getFavs().includes(SLUG);
+  favBtn.textContent = on ? '♥ Favoritado' : '♡ Favoritar';
+  favBtn.classList.toggle('on', on);
+}
+favBtn.addEventListener('click', () => {
+  let favs = getFavs();
+  favs = favs.includes(SLUG) ? favs.filter(x => x !== SLUG) : [...favs, SLUG];
+  setFavs(favs); syncFav();
+  toast(favs.includes(SLUG) ? 'Adicionado aos favoritos 💜' : 'Removido dos favoritos');
+});
+syncFav();
+if (window.QRCode) {
+  new QRCode(document.getElementById('qr'), { text: location.href, width: 170, height: 170, colorDark: '#07020f', colorLight: '#f5f0ff', correctLevel: QRCode.CorrectLevel.M });
+}
+
+</script>
 </body>
 </html>
